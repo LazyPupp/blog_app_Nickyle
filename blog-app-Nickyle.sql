@@ -52,3 +52,15 @@ insert into tag_posts(tag_id, post_id) VALUES (1,2);
 -- SELECT email, sn , posts.title, posts.content 
 -- FROM user_info INNER JOIN posts ON posts.author_id = user_info.id
 -- WHERE user_info.id = 1; 
+
+select sn AS "comment author", posts.title, posts.content, comments.comment
+FROM user_info INNER JOIN comments ON comments.author_id = user_info.id
+INNER JOIN posts ON comments.posts_id = posts.id
+WHERE sn = 'LoL'
+;
+
+select postAuthor.sn AS "post author", posts.title, posts.content,commentAuthor.sn AS "comment author", comments.comment
+FROM user_info cA,user_info postAuthor INNER JOIN comments ON comments.author_id = cA.id
+INNER JOIN posts ON comments.posts_id = posts.id
+INNER JOIN posts ON postAuthor.id = posts.id
+WHERE sn = 'LoL';
